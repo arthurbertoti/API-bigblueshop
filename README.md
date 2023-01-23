@@ -1,5 +1,5 @@
 # API BigBlueShop
-API desenvolvido a partir do 5º desafio de programação do curso 3035 TEACH.
+API desenvolvida a partir do 5º desafio de programação do curso 3035 TEACH.
 ## Como usar:
 - Baixe o repositório;
 - Rode a classe main BigblueshopAplication.java;
