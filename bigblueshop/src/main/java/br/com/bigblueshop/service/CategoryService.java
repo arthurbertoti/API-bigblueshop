@@ -1,7 +1,9 @@
 package br.com.bigblueshop.service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bigblueshop.dto.CategoryDto;
+import br.com.bigblueshop.dto.ProductDto;
 import br.com.bigblueshop.model.Category;
+import br.com.bigblueshop.model.Product;
 import br.com.bigblueshop.repository.CategoryRepository;
 import br.com.bigblueshop.service.form.CategoryForm;
 
@@ -22,9 +26,13 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-	public Page<CategoryDto> listCategories(Pageable pagination) {
+	public Page<CategoryDto> objectCategoriesList(Pageable pagination) {
 		Page<Category> categories = categoryRepository.findAll(pagination);
 		return CategoryDto.convert(categories);
+	}
+	
+	public List<CategoryDto> listCategories() {
+		return categoryRepository.findAll().stream().map(CategoryDto::new).collect(Collectors.toList());
 	}
 	
 	public ResponseEntity<CategoryDto> viewCategory(Long id) {

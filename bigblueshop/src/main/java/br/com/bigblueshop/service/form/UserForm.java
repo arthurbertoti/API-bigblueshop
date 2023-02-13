@@ -23,6 +23,9 @@ public class UserForm {
 	private String email;
 	@NotNull
 	@NotEmpty
+	private String function;
+	@NotNull
+	@NotEmpty
 	private String phone;
 	@NotNull
 	@NotEmpty
@@ -35,6 +38,7 @@ public class UserForm {
 		
 		user.setName(this.name);
 		user.setEmail(this.email);
+		user.setFunction(this.function);
 		user.setPhone(this.phone);
 		user.setPassword(new BCryptPasswordEncoder().encode(this.password));
 		user.setProfiles(profileRepository.findById(this.profileId).get());

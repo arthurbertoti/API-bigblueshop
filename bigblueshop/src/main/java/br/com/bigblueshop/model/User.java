@@ -21,16 +21,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter private Long id;
-	@Getter @Setter private String name;
-	@Getter @Setter private String email;
-	@Getter @Setter private String phone;
-	@Getter @Setter private String password;
+	private Long id;
+	private String name;
+	private String function;
+	private String email;
+	private String phone;
+	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Getter private List<Profile> profiles = new ArrayList<>();
@@ -41,6 +44,7 @@ public class User implements UserDetails{
 
 	public User(UserForm form, ProfileRepository profileRepository) {
 		this.name = form.getName();
+		this.function = form.getFunction();
 		this.email = form.getEmail();
 		this.phone= form.getPhone();
 		this.password = new BCryptPasswordEncoder().encode(form.getPassword());

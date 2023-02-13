@@ -44,7 +44,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers(HttpMethod.POST, "/auth").permitAll()/*
 		.antMatchers(HttpMethod.GET, "/products").hasAnyRole("ADMIN", "VIEWER")
 		.antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/products/**").hasAnyRole("ADMIN", "VIEWER")
@@ -60,7 +60,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.PUT, "/users/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.DELETE, "/users/**").hasRole("ADMIN")
-		.anyRequest().authenticated()
+		*/.anyRequest().permitAll()/*.authenticated()*/
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(new AuthenticationViaTokenFilter(tokenService, userRepository), UsernamePasswordAuthenticationFilter.class);

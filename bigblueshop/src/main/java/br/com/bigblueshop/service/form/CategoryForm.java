@@ -19,27 +19,16 @@ public class CategoryForm {
 	
 	@NotNull
 	@NotEmpty
+	private String code;
+	
+	@NotNull
+	@NotEmpty
 	private String description;
-
-	public String getName() {
-		return name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Category update(Long id, CategoryRepository categoryRepository) {
 		Category category = categoryRepository.getOne(id);
 		category.setName(this.name);
+		category.setCode(this.code);
 		category.setDescription(this.description);
 		return category;
 	}

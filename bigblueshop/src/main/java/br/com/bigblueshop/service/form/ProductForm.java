@@ -19,6 +19,16 @@ public class ProductForm {
 	private String name;
 
 	@NotNull
+	@NotEmpty	
+	private String imageUrl;
+	
+	@NotNull
+	private Float price;
+	
+	@NotNull
+	private Long storage;
+	
+	@NotNull
 	@NotEmpty
 	private String description;
 
@@ -33,7 +43,7 @@ public class ProductForm {
 	public Product convert(CategoryRepository categoryRepository) {
 		Category category = categoryRepository.findByName(categoryName).get();
 		
-		return new Product(name, description, barcode, category);
+		return new Product(name, imageUrl, price, storage, description, barcode, category);
 	}
 
 	public Product update(Long id, ProductRepository productRepository, CategoryRepository categoryRepository) {
@@ -41,6 +51,9 @@ public class ProductForm {
 		Product product = productRepository.getOne(id);
 
 		product.setName(this.name);
+		product.setImageUrl(this.imageUrl);
+		product.setPrice(this.price);
+		product.setStorage(this.storage);
 		product.setDescription(this.description);
 		product.setBarcode(this.barcode);
 		product.setCategory(categoryRepository.findByName(this.categoryName).get());

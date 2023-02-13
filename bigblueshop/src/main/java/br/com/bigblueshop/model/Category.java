@@ -13,17 +13,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter
 	private Long id;
-	@Getter @Setter
 	private String name;
-	@Getter @Setter
+	private String code;
 	private String description;
 	@OneToMany(mappedBy = "category")
-	@Getter @Setter
 	private List<Product> products;
 	
 	public Category() {
@@ -32,6 +31,7 @@ public class Category {
 
 	public Category(CategoryForm form) {
 		this.name = form.getName();
+		this.code = form.getCode();
 		this.description = form.getDescription();
 	}
 

@@ -1,7 +1,9 @@
 package br.com.bigblueshop.service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,11 +27,15 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
-	public Page<ProductDto> listProducts(Pageable pagination) {
+	public Page<ProductDto> ObjectProductsList(Pageable pagination) {
 		Page<Product> products = productRepository.findAll(pagination);
 		return ProductDto.convert(products);
 	}
-	
+
+	public List<ProductDto> listProducts() {
+		return productRepository.findAll().stream().map(ProductDto::new).collect(Collectors.toList());
+	}
+
 	public ResponseEntity<ProductDto> viewProduct(Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		if (product.isPresent()) {

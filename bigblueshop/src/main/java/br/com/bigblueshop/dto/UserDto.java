@@ -7,22 +7,25 @@ import br.com.bigblueshop.service.form.UserForm;
 import lombok.Getter;
 
 public class UserDto {
-
+	
 	@Getter
 	private Long id;
 	@Getter
 	private String name;
 	@Getter
+	private String function;
+	@Getter
 	private String email;
 	@Getter
 	private String phone;
 	@Getter
-	private String password;
+	private String password = null;
 	@Getter
 	private Long profileId;
 
 	public UserDto(UserForm form) {
 		this.name = form.getName();
+		this.function = form.getFunction();
 		this.email = form.getEmail();
 		this.phone = form.getPhone();
 		this.profileId = form.getProfileId();
@@ -31,6 +34,7 @@ public class UserDto {
 	public UserDto(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
+		this.function = user.getFunction();
 		this.email = user.getEmail();
 		this.phone = user.getPhone();
 		this.profileId = user.getProfiles().get(0).getId();

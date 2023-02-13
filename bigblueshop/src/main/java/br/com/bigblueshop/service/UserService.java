@@ -1,7 +1,9 @@
 package br.com.bigblueshop.service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,11 +27,14 @@ public class UserService {
 	@Autowired
 	private ProfileRepository profileRepository;
 
-	public Page<UserDto> listUsers(Pageable pagination) {
+	public Page<UserDto> objectUsersList(Pageable pagination) {
 		Page<User> users = userRepository.findAll(pagination);
 		return UserDto.convert(users);
 	}
-
+	
+	public List<UserDto> listUsers() {
+		return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+	}
 	public ResponseEntity<UserDto> viewUser(Long id) {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isPresent()) {

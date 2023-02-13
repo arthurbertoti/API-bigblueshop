@@ -1,5 +1,7 @@
 package br.com.bigblueshop.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -30,10 +32,15 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@GetMapping("/list")
+	public Page<ProductDto> ObjectProductsList(
+			@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 7) Pageable pagination) {
+		return productService.ObjectProductsList(pagination);
+	}
+	
 	@GetMapping
-	public Page<ProductDto> listProducts(
-			@PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) {
-		return productService.listProducts(pagination);
+	public List<ProductDto>listProducts() {
+		return productService.listProducts();
 	}
 
 	@GetMapping("/{id}")
