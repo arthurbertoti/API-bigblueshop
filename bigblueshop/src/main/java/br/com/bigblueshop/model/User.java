@@ -36,7 +36,7 @@ public class User implements UserDetails{
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@Getter private List<Profile> profiles = new ArrayList<>();
+	private List<Profile> profiles = new ArrayList<>();
 
 	public User() {
 		super();

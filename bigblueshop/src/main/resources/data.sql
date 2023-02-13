@@ -5,8 +5,9 @@ INSERT INTO User(name, function, email, phone, password) VALUES('Ana', 'Gerente'
 INSERT INTO PROFILE (id, name) VALUES(1, 'ROLE_VIEWER');
 INSERT INTO PROFILE (id, name) VALUES(2, 'ROLE_ADMIN');
 
-INSERT INTO USER_PROFILES(user_id, profiles_id) VALUES(1, 1);
-INSERT INTO USER_PROFILES(user_id, profiles_id) VALUES(2, 2);
+INSERT INTO USER_PROFILES(user_id, profiles_id) VALUES(1, 2);
+INSERT INTO USER_PROFILES(user_id, profiles_id) VALUES(2, 1);
+INSERT INTO USER_PROFILES(user_id, profiles_id) VALUES(3, 1);
 
 INSERT INTO CATEGORY(name, code, description) VALUES('Categoria 1', '000001', 'primeira categoria');
 INSERT INTO CATEGORY(name, code, description) VALUES('Categoria 2', '000012', 'segunda categoria');
