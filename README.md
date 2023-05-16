@@ -8,6 +8,7 @@ API desenvolvida a partir do 5º desafio de programação do curso 3035 TEACH.
 ### ADMIN
  - name: Admin
  - password: 123456
+ 
 ### VIEWER
  - name: Viewer
  - password: 123456
